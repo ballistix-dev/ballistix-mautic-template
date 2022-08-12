@@ -1,0 +1,627 @@
+<!doctype html><html> 
+
+<head>
+  <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+  <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+  <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+  <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no"> <!-- Tell iOS not to automatically link certain text strings. -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <title>{subject}</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+  <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+  <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+  <!-- Web Font / @font-face : BEGIN -->
+  <!-- NOTE: If web fonts are not required, lines 23 - 41 can be safely removed. -->
+
+  <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+  <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+  <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: https://web.archive.org/web/20190717120616/http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+  <!--[if !mso]><!-->
+  <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+  <!--<![endif]-->
+
+  <!-- Web Font / @font-face : END -->
+
+  <!-- CSS Reset : BEGIN -->
+  <style>
+    /* What it does: Tells the email client that only light styles are provided but the client can transform them to dark. A duplicate of meta color-scheme meta tag above. */
+    :root {
+      color-scheme: light;
+      supported-color-schemes: light;
+    }
+
+    /* What it does: Remove spaces around the email design added by some email clients. */
+    /* Beware: It can remove the padding / Margin and add a background color to the compose a reply window. */
+    html,
+    body {
+      Margin: 0 auto !important;
+      padding: 0 !important;
+      height: 100% !important;
+      width: 100% !important;
+    }
+
+    /* What it does: Stops email clients resizing small text. */
+    * {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* What it does: Centers email on Android 4.4 */
+    div[style*="Margin: 16px 0"] {
+      Margin: 0 !important;
+    }
+
+    /* What it does: forces Samsung Android mail clients to use the entire viewport */
+    #MessageViewBody,
+    #MessageWebViewDiv {
+      width: 100% !important;
+    }
+
+    /* What it does: Stops Outlook from adding extra spacing to tables. */
+    table,
+    td {
+      mso-table-lspace: 0pt !important;
+      mso-table-rspace: 0pt !important;
+    }
+
+    /* What it does: Replaces default bold style. */
+    th {
+      font-weight: normal;
+    }
+
+    /* What it does: Fixes webkit padding issue. */
+    table {
+      border-spacing: 0 !important;
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+      Margin: 0 auto !important;
+    }
+
+    /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+    a {
+      text-decoration: none;
+    }
+
+    /* What it does: Uses a better rendering method when resizing images in IE. */
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    /* What it does: A work-around for email clients meddling in triggered links. */
+    a[x-apple-data-detectors],
+    /* iOS */
+    .unstyle-auto-detected-links a,
+    .aBn {
+      border-bottom: 0 !important;
+      cursor: default !important;
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
+    /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+    .im {
+      color: inherit !important;
+    }
+
+    /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+    .a6S {
+      display: none !important;
+      opacity: 0.01 !important;
+    }
+
+    /* If the above doesn't work, add a .g-img class to any image in question. */
+    img.g-img+div {
+      display: none !important;
+    }
+
+    /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+    /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+    /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+    @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+      u~div .email-container {
+        min-width: 320px !important;
+      }
+    }
+
+    /* iPhone 6, 6S, 7, 8, and X */
+    @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+      u~div .email-container {
+        min-width: 375px !important;
+      }
+    }
+
+    /* iPhone 6+, 7+, and 8+ */
+    @media only screen and (min-device-width: 414px) {
+      u~div .email-container {
+        min-width: 414px !important;
+      }
+    }
+  </style>
+  <!-- CSS Reset : END -->
+
+  <!-- Progressive Enhancements : BEGIN -->
+  <style>
+    /* What it does: Hover styles for buttons */
+    .button-td,
+    .button-a {
+      transition: all 100ms ease-in;
+    }
+
+    .button-td-primary:hover,
+    .button-a-primary:hover {
+      background: #555555 !important;
+      border-color: #555555 !important;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 600px) {
+
+      .email-container {
+        width: 100% !important;
+        Margin: auto !important;
+      }
+
+      /* What it does: Forces table cells into full-width rows. */
+      .stack-column,
+      .stack-column-center {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        direction: ltr !important;
+      }
+
+      /* And center justify these ones. */
+      .stack-column-center {
+        text-align: center !important;
+      }
+
+      /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+      .center-on-narrow {
+        text-align: center !important;
+        display: block !important;
+        Margin-left: auto !important;
+        Margin-right: auto !important;
+        float: none !important;
+      }
+
+      table.center-on-narrow {
+        display: inline-block !important;
+      }
+
+      /* What it does: Adjust typography on small screens to improve readability */
+      .email-container p,
+      .email-container li {
+        font-size: 17px !important;
+      }
+    }
+
+    /* Dark Mode Styles : BEGIN */
+    @media (prefers-color-scheme: dark) {
+      .email-bg {
+        background: #111111 !important;
+      }
+
+      .darkmode-bg {
+        background: #222222 !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      li,
+      .darkmode-text,
+      .email-container a:not([class]) {
+        color: #F7F7F9 !important;
+      }
+
+      td.button-td-primary,
+      td.button-td-primary a {
+        background: #ffffff !important;
+        border-color: #ffffff !important;
+        color: #222222 !important;
+      }
+
+      td.button-td-primary:hover,
+      td.button-td-primary a:hover {
+        background: #cccccc !important;
+        border-color: #cccccc !important;
+      }
+
+      .footer td {
+        color: #aaaaaa !important;
+      }
+
+      .darkmode-fullbleed-bg {
+        background-color: #0F3016 !important;
+      }
+    }
+
+    /* Dark Mode Styles : END */
+  </style>
+  <!-- Progressive Enhancements : END -->
+
+</head>
+<!--
+	The email background color (#E9E9E9) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+
+<body width="100%" style="Margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #E9E9E9;" class="email-bg">
+  <center role="article" aria-roledescription="email" lang="en" style="width: 100%; background-color: #E9E9E9;" class="email-bg">
+    <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #E9E9E9;" class="email-bg">
+    <tr>
+    <td>
+    <![endif]-->
+
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: 0 auto;" class="email-container">
+          <tr>
+            <td data-section="1" style="background-color: transparent;" bgcolor="transparent" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <th valign="top" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td data-slot-container="1" style="padding: 25px 0; text-align: left;" class="center-on-narrow">
+                          <div data-slot="image">
+		                      <a href="#" target="_blank" rel="noopener noreferrer">
+		                      	<img src="https://40daystemp3.testi.at/placeholder/150x100" alt="BRAND" border="0" class="g-img fr-view"  />
+		                      </a>
+		                      <div style="clear:both"></div>
+		                    </div>
+                        </td>
+                      </tr>
+
+                    </table>
+                  </th>
+                  <th valign="top" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+
+                      <tr>
+                        <td data-slot-container="1" style="font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000; padding: 25px 0; text-align: right;" class="center-on-narrow">
+                          <div data-slot="text" class="center-on-narrow">
+                            <p>DATE</p>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td data-section="1" bgcolor="#ffffff;" style="background-color: rgb(255,255,255)" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td data-slot-container="1">
+                    <div data-slot="image">
+                      <a href="#" target="_blank" rel="noopener noreferrer"><img src="https://40daystemp3.testi.at/placeholder/600x320" width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 680px; height: auto; background: rgb(221, 221, 221); font-family: sans-serif; font-size: 15px; line-height: 15px; color: rgb(85, 85, 85); Margin: auto; display: block;" class="g-img fr-view"  />
+                      </a>
+                      <div style="clear:both"></div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td data-section="1" bgcolor="#000000;" style="background-color: rgb(0,0,0)" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                    <div data-slot="text">
+                      <p style="Margin: 0; color: #FFFFFF;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
+                    </div>
+
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td data-section="1" bgcolor="#ffffff;" style="background-color: rgb(255,255,255)" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                    <div data-slot="text">
+                      <h1 style="margin-bottom: 16px; font-size: 35px; font-weight: bold; line-height: 1.4;">Heading 1 Consectetur Adipiscing aliqua</h1>
+
+                      <p style="margin-bottom: 16px;">Hi {contactfield=firstname}</p>
+                      
+                      <p style="margin-bottom: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute.</p>
+                      
+                      <p style="margin-bottom: 16px;">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute labore et dolore magna.</p>
+                      
+                      <p style="margin-bottom: 16px;"><a href="#" style="text-decoration: none; color: #000000; font-weight: bold;">LEARN MORE ></a></p>
+                      
+                      <h2 style="margin-bottom: 16px; font-size: 26px; font-weight: bold; line-height: 1.4;">Heading 2 dolor sit amet</h2>
+                      
+                      <p style="margin-bottom: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute labore et dolore magna.</p>
+                      
+                      <p style="margin-bottom: 16px;">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute.</p>
+                      
+                      <h3 style="margin-bottom: 16px; font-size: 21px; font-weight: bold; line-height: 1.4;">Heading 3</h3>
+                      
+                      <ul>
+                      	<li>Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua</li>
+                      	<li>Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua</li>
+                      	<li>Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua</li>
+                      </ul>
+                      
+                      <p style="margin-bottom: 16px;">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.</p>
+                      
+                      <p>Name Surname
+                      	<br><span style="color: #A0A0A0;">Title</span></p>
+
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td data-section="1" bgcolor="#f0f0f0;" style="background-color: rgb(240,240,240); padding: 0 25px;" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <th valign="top" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td data-slot-container="1" style="padding: 25px; text-align: left;" class="center-on-narrow">
+                          <div data-slot="image">
+                            <img src="https://40daystemp3.testi.at/placeholder/225x225" alt="alt_text"  />
+                          </div>
+                        </td>
+                      </tr>
+
+                    </table>
+                  </th>
+                  <th valign="top" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td data-slot-container="1" style="font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000; padding: 25px; text-align: left;" class="center-on-narrow">
+                          <div data-slot="text" class="center-on-narrow">
+                            <h3 style="mso-line-height-rule:exactly; Margin: 0 0 10px; font-size: 20px; line-height: 1.2; color: #000000; font-weight: bold;">Image Left</h3>
+                            <p style="Margin: 0 0 10px;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. </p>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td bgcolor="#ffffff;" style="background-color: rgb(255,255,255); padding: 0 25px;" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <th valign="top" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td data-slot-container="1" style="font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000; padding: 25px; text-align: left;" class="center-on-narrow">
+                          <div data-slot="text" class="center-on-narrow">
+                            <h3 style="mso-line-height-rule:exactly; Margin: 0 0 10px; font-size: 20px; line-height: 1.2; color: #000000; font-weight: bold;">Image Right</h3>
+                            <p style="Margin: 0 0 10px;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. </p>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </table>
+                  </th>
+                  <th valign="top" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td data-slot-container="1" style="font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000; padding:  25px; text-align: left;" class="center-on-narrow">
+                        	<div data-slot="image">
+                            <img src="https://40daystemp3.testi.at/placeholder/225x225" alt="alt_text"  />
+                          </div>
+                          
+                        </td>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+		<div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td bgcolor="#f0f0f0;" style="background-color: rgb(240,240,240); padding: 0 25px;" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <th valign="top" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td data-slot-container="1" style="font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000; padding: 25px; text-align: left;" class="center-on-narrow">
+                          <div data-slot="image">
+                            <img src="https://40daystemp3.testi.at/placeholder/225x225" alt="alt_text" />
+                          </div>
+                          <div data-slot="text" class="center-on-narrow">
+                          	<br />
+                            <h3 style="mso-line-height-rule:exactly; Margin: 0 0 10px; font-size: 20px; line-height: 1.4; color: #000000; font-weight: bold;">Column 1</h3>
+                            <p style="Margin: 0 0 10px;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. </p>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </table>
+                  </th>
+                  <th valign="top" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td data-slot-container="1" style="font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000; padding: 25px; text-align: left;" class="center-on-narrow">
+                        	<div data-slot="image">
+                            <img src="https://40daystemp3.testi.at/placeholder/225x225" alt="alt_text" />
+                          </div>
+                          <div data-slot="text" class="center-on-narrow">
+                          	<br />
+                            <h3 style="mso-line-height-rule:exactly; Margin: 0 0 10px; font-size: 20px; line-height: 1.2; color: #000000; font-weight: bold;">Column 2</h3>
+                            <p style="Margin: 0 0 10px;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. </p>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td data-section="1" bgcolor="#ffffff;" style="background-color: rgb(255,255,255);" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                  	<div data-slot="image">
+                      <a href="#" target="_blank" rel="noopener noreferrer"><img src="https://40daystemp3.testi.at/placeholder/500x320" width="500" height="" alt="alt_text" border="0" style="width: 100%; max-width: 500px; height: auto; background: rgb(221, 221, 221); font-family: sans-serif; font-size: 15px; line-height: 15px; color: rgb(85, 85, 85); Margin: auto; display: block;" class="g-img fr-view" />
+                      </a>
+                      <div style="clear:both"></div>
+                    </div>
+                    <div data-slot="text">
+                    	<br	/>
+                      <h3 style="mso-line-height-rule:exactly; Margin: 0 0 10px; font-size: 20px; line-height: 1.2; color: #000000; font-weight: bold;">Praesent laoreet malesuada&nbsp;cursus.</h3>
+                      <p style="Margin: 0 0 10px;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+    
+    
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td data-section="1" bgcolor="#000000;" style="background-color: rgb(0,0,0);" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                  	<div data-slot="image" data-param-align="1" style="text-align: center;">
+                      <a href="#" target="_blank" rel="noopener noreferrer"><img src="https://40daystemp3.testi.at/placeholder/150x75" class="g-img fr-view" />
+                      </a>
+                      <div style="clear:both"></div>
+                    </div>
+                    <div data-slot="text">
+                    	<br />
+                      <p style="Margin: 0; color: #FFFFFF; text-align: center;">link | link | link</p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+
+    <div data-section-wrapper="1">
+      <center>
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
+          <tr>
+            <td bgcolor="transparent;" style="background-color: transparent;" class="darkmode-bg">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                    <div data-slot="text">
+                      <p style="font-size: 11px; line-height: 1.4; text-align: center; color: #95a5a6;">
+                        Company Name<br />
+                        Tel: +0 123 4567<br />
+                        123456 Address Road, Town, Country<br />
+                        &copy; 2022 All Rights Reserved.<br /><br />
+
+                        <a style="color: #95a5a6;" href="{unsubscribe_url}">Unsubscribe</a>
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+
+
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </div>
+
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+  </center>
+</body>
+
+</html>
