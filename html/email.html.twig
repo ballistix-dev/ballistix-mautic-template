@@ -84,6 +84,7 @@
     th {
       font-weight: normal;
     }
+    
 
     /* What it does: Fixes webkit padding issue. */
     table {
@@ -174,6 +175,27 @@
       border-color: #555555 !important;
     }
 
+    /* Table styles */
+    *[data-slot="text"] td {
+      padding: 8px;
+    }
+
+    .fr-alternate-rows tr:nth-child(odd) {
+      background-color: #E9E9E9;
+    }
+    .fr-dashed-borders tr {
+      border-bottom: 1px solid #E9E9E9;
+    }
+    td.fr-thick {
+      font-weight: bold;
+    }
+    td.fr-highlighted {
+      background-color: #E9E9E9;
+    }
+    th.aligncell-left {
+      text-align: left;
+    }
+    
     /* Media Queries */
     @media screen and (max-width: 600px) {
 
@@ -264,16 +286,16 @@
 
 </head>
 <!--
-	The email background color (#E9E9E9) is defined in three places:
+	The email background color (#EBEBEB) is defined in three places:
 	1. body tag: for most email clients
 	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
 	3. mso conditional: For Windows 10 Mail
 -->
 
-<body width="100%" style="Margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #E9E9E9;" class="email-bg">
-  <center role="article" aria-roledescription="email" lang="en" style="width: 100%; background-color: #E9E9E9;" class="email-bg">
+<body width="100%" style="Margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #EBEBEB;" class="email-bg">
+  <center role="article" aria-roledescription="email" lang="en" style="width: 100%; background-color: #EBEBEB;" class="email-bg">
     <!--[if mso | IE]>
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #E9E9E9;" class="email-bg">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #EBEBEB;" class="email-bg">
     <tr>
     <td>
     <![endif]-->
@@ -281,49 +303,44 @@
     <div data-section-wrapper="1">
       <center>
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: 0 auto;" class="email-container">
-          <tr>
-            <td data-section="1" style="background-color: transparent;" bgcolor="transparent" class="darkmode-bg">
+          <tbody><tr>
+            <td data-section="1" style="padding-top: 50px; background-color: transparent;" bgcolor="transparent" class="darkmode-bg">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                <tr>
-                  <th valign="top" width="50%" class="stack-column-center">
+                <tbody><tr>
+                  <th valign="bottom" width="50%" class="stack-column-center">
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                      <tr>
-                        <td data-slot-container="1" style="padding: 25px 0; text-align: left;" class="center-on-narrow">
+                      <tbody><tr>
+                        <td data-slot-container="1" style="padding-bottom: 15px; text-align: left;" class="center-on-narrow ui-sortable">
                           <div data-slot="image">
-		                      <a href="#" target="_blank" rel="noopener noreferrer">
-		                      	<img src="https://40daystemp3.testi.at/placeholder/150x100" alt="BRAND" border="0" class="g-img fr-view"  />
-		                      </a>
-		                      <div style="clear:both"></div>
-		                    </div>
-                        </td>
-                      </tr>
-
-                    </table>
-                  </th>
-                  <th valign="top" width="50%" class="stack-column-center">
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-
-                      <tr>
-                        <td data-slot-container="1" style="font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000; padding: 25px 0; text-align: right;" class="center-on-narrow">
-                          <div data-slot="text" class="center-on-narrow">
-                            <p>DATE</p>
+                            <a href="#" target="_blank" style="display: block; Margin-bottom: 12px; text-decoration: none;">
+                              <img src="https://40daystemp3.testi.at/placeholder/180x60" alt="logo" /></a>
+                          <div style="clear:both"></div>
                           </div>
                         </td>
                       </tr>
-                    </table>
+                    </tbody></table>
+                  </th>
+                  <th valign="bottom" width="50%" class="stack-column-center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tbody><tr>
+                        <td data-slot-container="1" style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 15px; text-align: right;" class="center-on-narrow ui-sortable">
+                          <div data-slot="text" class="center-on-narrow">Date/Text</div>
+                        </td>
+                      </tr>
+                    </tbody></table>
                   </th>
                 </tr>
-              </table>
+              </tbody></table>
             </td>
           </tr>
-        </table>
+        </tbody></table>
       </center>
     </div>
     <div data-section-wrapper="1">
       <center>
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
           <tr>
-            <td data-section="1" bgcolor="#ffffff;" style="background-color: rgb(255,255,255)" class="darkmode-bg">
+            <td data-section="1" bgcolor="#131313;" style="background-color: rgb(19,19,19);" class="darkmode-bg">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                   <td data-slot-container="1">
@@ -341,14 +358,19 @@
       </center>
     </div>
 
+
+
+
     <div data-section-wrapper="1">
       <center>
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
           <tr>
             <td data-section="1" bgcolor="#000000;" style="background-color: rgb(0,0,0)" class="darkmode-bg">
+
+
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
-                  <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                  <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #FFFFFF;">
                     <div data-slot="text">
                       <p style="Margin: 0; color: #FFFFFF;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
                     </div>
@@ -356,6 +378,8 @@
                   </td>
                 </tr>
               </table>
+
+
             </td>
           </tr>
         </table>
@@ -370,8 +394,10 @@
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                   <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                    
                     <div data-slot="text">
-                      <h1 style="margin-bottom: 16px; font-size: 35px; font-weight: bold; line-height: 1.4;">Heading 1 Consectetur Adipiscing aliqua</h1>
+                    
+                      <h1 style="margin-bottom: 16px; font-size: 35px; font-weight: bold; line-height: 1.2;">Heading 1 Consectetur Adipiscing aliqua</h1>
 
                       <p style="margin-bottom: 16px;">Hi {contactfield=firstname}</p>
                       
@@ -381,26 +407,104 @@
                       
                       <p style="margin-bottom: 16px;"><a href="#" style="text-decoration: none; color: #000000; font-weight: bold;">LEARN MORE ></a></p>
                       
-                      <h2 style="margin-bottom: 16px; font-size: 26px; font-weight: bold; line-height: 1.4;">Heading 2 dolor sit amet</h2>
+                      <h2 style="margin-bottom: 16px; font-size: 26px; font-weight: bold; line-height: 1.2;">Heading 2 dolor sit amet</h2>
                       
                       <p style="margin-bottom: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute labore et dolore magna.</p>
                       
                       <p style="margin-bottom: 16px;">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute.</p>
                       
-                      <h3 style="margin-bottom: 16px; font-size: 21px; font-weight: bold; line-height: 1.4;">Heading 3</h3>
+                      <h3 style="margin-bottom: 16px; font-size: 21px; font-weight: bold; line-height: 1.2;">Heading 3</h3>
                       
                       <ul>
                       	<li>Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua</li>
                       	<li>Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua</li>
                       	<li>Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua</li>
                       </ul>
-                      
-                      <p style="margin-bottom: 16px;">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.</p>
-                      
-                      <p>Name Surname
-                      	<br><span style="color: #A0A0A0;">Title</span></p>
+                      <br/>
+                    </div>
+                    <div data-slot="text">
+                      <table class="fr-dashed-borders" cellpadding="0" cellspacing="0" width="100%">
+                          <thead style="background-color: #E9E9E9">
+                            <tr>
+                              <th class="fr-thick fr-highlighted aligncell-left" style="padding: 8px; font-family: sans-serif;"><b>Heading 1</b></th>
+                              <th class="fr-thick fr-highlighted" style="padding: 8px; font-family: sans-serif;"><b>Heading 2</b></th>
+                              <th class="fr-thick fr-highlighted" style="padding: 8px; font-family: sans-serif;"><b>Heading 3</b></th>
+                            </tr>
+      
+                          </thead>
+
+                          <tbody>
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 1</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 2</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+  
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 3</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+  
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 4</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+  
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 5</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+  
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 6</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+  
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 7</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+  
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 8</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+  
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 9</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+  
+                            <tr>
+                              <td style="padding: 8px; font-family: sans-serif;">Item 10</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1a</td>
+                              <td style="text-align: center; padding: 8px; font-family: sans-serif;">data 1b</td>
+                            </tr>
+                          </tbody>
+      
+                      </table>
+
+                        <br/>
 
                     </div>
+                      <div data-slot="text">
+                        <p style="margin-bottom: 16px;">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.</p>
+                        <p>Name Surname
+                      	<br><span style="color: #A0A0A0;">Title</span></p>
+                      </div>
+                   
                   </td>
                 </tr>
               </table>
@@ -413,7 +517,7 @@
       <center>
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
           <tr>
-            <td data-section="1" bgcolor="#f0f0f0;" style="background-color: rgb(240,240,240); padding: 0 25px;" class="darkmode-bg">
+            <td data-section="1" bgcolor="#F7F7F7" style="background-color: rgb(247, 247, 247); padding: 0 25px;" class="darkmode-bg">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                   <th valign="top" width="50%" class="stack-column-center">
@@ -451,7 +555,7 @@
       <center>
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
           <tr>
-            <td bgcolor="#ffffff;" style="background-color: rgb(255,255,255); padding: 0 25px;" class="darkmode-bg">
+            <td data-section="1" bgcolor="#ffffff;" style="background-color: rgb(255,255,255); padding: 0 25px;" class="darkmode-bg">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                   <th valign="top" width="50%" class="stack-column-center">
@@ -490,7 +594,7 @@
       <center>
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
           <tr>
-            <td bgcolor="#f0f0f0;" style="background-color: rgb(240,240,240); padding: 0 25px;" class="darkmode-bg">
+            <td data-section="1" bgcolor="#F7F7F7" style="background-color: rgb(247, 247, 247); padding: 0 25px;" class="darkmode-bg">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                   <th valign="top" width="50%" class="stack-column-center">
@@ -569,14 +673,29 @@
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                   <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
-                  	<div data-slot="image" data-param-align="1" style="text-align: center;">
-                      <a href="#" target="_blank" rel="noopener noreferrer"><img src="https://40daystemp3.testi.at/placeholder/150x75" class="g-img fr-view" />
-                      </a>
-                      <div style="clear:both"></div>
-                    </div>
                     <div data-slot="text">
-                    	<br />
-                      <p style="Margin: 0; color: #FFFFFF; text-align: center;">link | link | link</p>
+                    	<p style="text-align: center;">
+                        <a href="#" target="_blank" style="text-decoration: none;">
+                          <img style="margin-bottom: 15px; display: inline-block;" src="https://40daystemp3.testi.at/placeholder/180x60" alt="" />
+                        </a>
+                          <br />
+                          <a href="#" target="_blank" style="font-size: 12px;color: #FFFFFF; text-decoration: none;">info@companyname.com</a>
+                          <a href="tel:000000" target="_blank" style="font-size: 12px;color: #FFFFFF; text-decoration: none;">+00 (0) 00 000 0000</a>
+                          <br />
+                          <a href="#" target="_blank" style="text-decoration: none; color: #FFFFFF;">companyname.com</a> 
+                          <br/><br/>
+                          
+                          <a href="#" target="_blank" style=" color: #FFFFFF; text-decoration: none;"><img src="https://s3.us-east-1.amazonaws.com/static2.ballistixmail.com/master-edm-assets/padded_w_linked-in.png" alt="Linkedin" style="width: 100%; max-width:34px;  outline: none; text-decoration: none;" width="34" height="20" /></a>
+                         
+						              <a href="#" target="_blank" style=" color: #FFFFFF; text-decoration: none;"><img src="https://s3.us-east-1.amazonaws.com/static2.ballistixmail.com/master-edm-assets/padded_w_facebook.png" alt="Facebook" style="width: 100%; max-width: 34px;  outline: none; text-decoration: none;" width="34" height="20" /></a>
+                         
+						              <a href="#" target="_blank" style="color: #FFFFFF; text-decoration: none;"><img src="https://s3.us-east-1.amazonaws.com/static2.ballistixmail.com/master-edm-assets/padded_w_instagram.png" alt="Instagram" style="width: 100%; max-width: 34px;  outline: none; text-decoration: none;" width="34" height="20" /></a>
+						  
+						              <a href="#" target="_blank" style="color: #FFFFFF; text-decoration: none;"><img src="https://s3.us-east-1.amazonaws.com/static2.ballistixmail.com/master-edm-assets/padded_w_twitter.png" alt="Twitter" style=" width: 100%; max-width: 34px;  outline: none; text-decoration: none;" width="34" height="20" /></a>
+						 
+						              <a href="#" target="_blank" style="color: #FFFFFF; text-decoration: none;"><img src="https://s3.us-east-1.amazonaws.com/static2.ballistixmail.com/master-edm-assets/padded_w_youtube.png" alt="YouTube" style="width: 100%; max-width: 42px;  outline: none; text-decoration: none;" width="42" height="20" /></a>
+
+                      </p>
                     </div>
                   </td>
                 </tr>
@@ -591,20 +710,22 @@
       <center>
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="Margin: auto;" class="email-container">
           <tr>
-            <td bgcolor="transparent;" style="background-color: transparent;" class="darkmode-bg">
+            <td data-section="1" bgcolor="transparent;" style="background-color: transparent;" class="darkmode-bg">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
-                  <td style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                  <td data-slot-container="1" style="padding: 25px 50px; font-family: sans-serif; font-size: 15px; line-height: 1.4; color: #000000;">
+                    
                     <div data-slot="text">
+                      
                       <p style="font-size: 11px; line-height: 1.4; text-align: center; color: #95a5a6;">
                         Company Name<br />
-                        Tel: +0 123 4567<br />
-                        123456 Address Road, Town, Country<br />
-                        &copy; 2022 All Rights Reserved.<br /><br />
-
-                        <a style="color: #95a5a6;" href="{unsubscribe_url}">Unsubscribe</a>
+                        Address<br />
+                        © 2022 All Rights Reserved.<br /><br />
+                        {unsubscribe_text}
                       </p>
+
                     </div>
+
                   </td>
                 </tr>
 
